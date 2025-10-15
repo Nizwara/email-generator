@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,806 +15,134 @@
     <meta property="twitter:card" content="summary_large_image">
     <link rel="icon" href="images/7anhkzte1tn7.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
-        
-        body {
-            font-family: 'Orbitron', monospace;
-            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Starfield Animation */
-        .stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 2s infinite;
-        }
-
-        .star:nth-child(odd) {
-            animation-delay: 1s;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-
-        /* Floating Planets */
-        .planet {
-            position: absolute;
-            border-radius: 50%;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        .planet-1 {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            top: 10%;
-            right: 10%;
-            animation-delay: 0s;
-        }
-
-        .planet-2 {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #74b9ff, #0984e3);
-            top: 60%;
-            left: 5%;
-            animation-delay: 4s;
-        }
-
-        .planet-3 {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
-            top: 30%;
-            left: 80%;
-            animation-delay: 2s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        /* Nebula Effect */
-        .nebula {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 1;
-            animation: nebulaPulse 6s ease-in-out infinite;
-        }
-
-        @keyframes nebulaPulse {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; }
-        }
-
-        /* Glowing Effects */
-        .glow-border {
-            border: 2px solid transparent;
-            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-            backdrop-filter: blur(10px);
-            box-shadow: 
-                0 0 20px rgba(116, 185, 255, 0.3),
-                inset 0 0 20px rgba(255, 255, 255, 0.1);
-        }
-
-        .glow-button {
-            background: linear-gradient(45deg, #74b9ff, #0984e3);
-            box-shadow: 
-                0 0 20px rgba(116, 185, 255, 0.5),
-                0 4px 15px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .glow-button:hover {
-            box-shadow: 
-                0 0 30px rgba(116, 185, 255, 0.8),
-                0 6px 20px rgba(0, 0, 0, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .glow-success {
-            background: linear-gradient(45deg, #00b894, #00a085);
-            box-shadow: 0 0 20px rgba(0, 184, 148, 0.5);
-        }
-
-        .glow-danger {
-            background: linear-gradient(45deg, #e17055, #d63031);
-            box-shadow: 0 0 20px rgba(225, 112, 85, 0.5);
-        }
-
-        .glow-warning {
-            background: linear-gradient(45deg, #fdcb6e, #f39c12);
-            box-shadow: 0 0 20px rgba(253, 203, 110, 0.5);
-        }
-
-        /* Cosmic Input */
-        .cosmic-input {
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(116, 185, 255, 0.3);
-            backdrop-filter: blur(10px);
-            color: #ffffff;
-            transition: all 0.3s ease;
-        }
-
-        .cosmic-input:focus {
-            border-color: #74b9ff;
-            box-shadow: 0 0 20px rgba(116, 185, 255, 0.4);
-            outline: none;
-        }
-
-        .cosmic-input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* Email Item Animation */
-        .email-item {
-            animation: slideInFromSpace 0.5s ease-out forwards;
-            opacity: 0;
-            transform: translateX(-50px);
-        }
-
-        @keyframes slideInFromSpace {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* Copy Success Animation */
-        .copy-success {
-            animation: cosmicPulse 0.6s ease-in-out;
-        }
-
-        @keyframes cosmicPulse {
-            0% { box-shadow: 0 0 20px rgba(0, 184, 148, 0.5); }
-            50% { box-shadow: 0 0 40px rgba(0, 184, 148, 1), 0 0 60px rgba(0, 184, 148, 0.5); }
-            100% { box-shadow: 0 0 20px rgba(0, 184, 148, 0.5); }
-        }
-
-        /* Shooting Star */
-        .shooting-star {
-            position: fixed;
-            width: 2px;
-            height: 2px;
-            background: white;
-            border-radius: 50%;
-            animation: shoot 3s linear infinite;
-            z-index: 2;
-        }
-
-        @keyframes shoot {
-            0% {
-                transform: translateX(-100px) translateY(-100px);
-                opacity: 1;
-            }
-            70% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateX(100vw) translateY(100vh);
-                opacity: 0;
-            }
-        }
-
-        /* Content Layer */
-        .content-layer {
-            position: relative;
-            z-index: 10;
-        }
-
-        /* Loading Animation */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,.3);
-            border-radius: 50%;
-            border-top-color: #fff;
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Category Badge */
-        .category-badge {
-            font-size: 0.75rem;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, #74b9ff, #0984e3);
-            border-radius: 4px;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .planet-1, .planet-2, .planet-3 {
-                display: none;
-            }
-        }
-
-        /* Advanced Options Panel */
-        .options-panel {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-in-out;
-        }
-
-        .options-panel.expanded {
-            max-height: 400px;
-        }
-
-        /* Active Filter Button */
-        .filter-btn.active {
-            background: linear-gradient(45deg, #74b9ff, #0984e3) !important;
-            box-shadow: 0 0 20px rgba(116, 185, 255, 0.5) !important;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <!-- Background Effects -->
-    <div class="nebula"></div>
-    <div class="stars" id="stars"></div>
-    
-    <!-- Floating Planets -->
-    <div class="planet planet-1"></div>
-    <div class="planet planet-2"></div>
-    <div class="planet planet-3"></div>
-    
-    <!-- Shooting Stars -->
-    <div class="shooting-star" style="top: 20%; animation-delay: 0s;"></div>
-    <div class="shooting-star" style="top: 40%; animation-delay: 2s;"></div>
-    <div class="shooting-star" style="top: 60%; animation-delay: 4s;"></div>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans transition-colors duration-300">
 
-    <div class="content-layer">
-        <div class="container mx-auto px-4 py-8 max-w-4xl">
-            <!-- Header -->
-            <div class="text-center mb-8">
-                <h1 class="text-4xl md:text-6xl font-black text-white mb-4 tracking-wider">
-                    <span class="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                        GMAIL
-                    </span>
-                    <span class="text-white">GENERATOR</span>
-                </h1>
-                <p class="text-blue-200 text-lg font-light tracking-wide">
-                    🚀 Generate advanced email variations across the digital universe 🌌
-                </p>
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <header class="flex justify-between items-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold">
+                Gmail Generator
+            </h1>
+            <button id="theme-toggle" class="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none">
+                <!-- Sun icon -->
+                <svg id="theme-toggle-dark-icon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05A1 1 0 003.636 3.636l-.707.707a1 1 0 101.414 1.414l.707-.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1zM15 17a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414l-.707.707z"></path></svg>
+                <!-- Moon icon -->
+                <svg id="theme-toggle-light-icon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            </button>
+        </header>
+
+        <!-- Input Section -->
+        <div class="card">
+            <div class="space-y-6">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Enter your Gmail Address
+                    </label>
+                    <div class="relative">
+                        <input type="email" id="email" placeholder="username@gmail.com" class="input-field">
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-400">
+                            📧
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Options Toggle -->
+                <div class="text-center">
+                    <button onclick="toggleOptions()" id="optionsToggle" class="btn btn-secondary">
+                        Advanced Options
+                    </button>
+                </div>
+
+                <!-- Advanced Options Panel -->
+                <div id="optionsPanel" class="options-panel">
+                    <div class="p-4 rounded-lg bg-gray-100 dark:bg-gray-800">
+                        <h3 class="font-bold mb-4 text-center">Generation Settings</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm mb-2">Max Variations</label>
+                                <input type="number" id="maxVariations" value="10" min="5" max="50" class="input-field">
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-2">Plus Alias Keywords</label>
+                                <input type="text" id="customKeywords" placeholder="work,shopping" class="input-field">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-sm mb-2">Generation Types</label>
+                                <div class="flex flex-wrap gap-4">
+                                    <label class="flex items-center gap-2 text-sm">
+                                        <input type="checkbox" id="enableDots" checked class="rounded"> Dot Variations
+                                    </label>
+                                    <label class="flex items-center gap-2 text-sm">
+                                        <input type="checkbox" id="enablePlus" checked class="rounded"> Plus Aliases
+                                    </label>
+                                    <label class="flex items-center gap-2 text-sm">
+                                        <input type="checkbox" id="enableMixed" checked class="rounded"> Mixed
+                                    </label>
+                                    <label class="flex items-center gap-2 text-sm">
+                                        <input type="checkbox" id="enableRandom" checked class="rounded"> Random
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="generateEmails()" id="generateBtn" class="btn btn-primary flex-1">
+                        Generate
+                    </button>
+                    <button onclick="clearResults()" class="btn btn-danger flex-1">
+                        Clear
+                    </button>
+                </div>
             </div>
+        </div>
 
-            <!-- Input Section -->
-            <div class="glow-border rounded-2xl p-6 mb-6">
-                <div class="space-y-6">
+        <!-- Results Section -->
+        <div id="results" class="hidden mt-6">
+            <div class="card">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                    <h2 class="text-2xl font-bold">Generated Emails</h2>
+                    <div class="flex gap-3 items-center">
+                        <button onclick="copyAllEmails()" class="btn btn-success text-sm">
+                            Copy All
+                        </button>
+                        <span id="emailCount" class="font-bold text-sm"></span>
+                    </div>
+                </div>
+
+                <!-- Category Filter -->
+                <div class="mb-4 flex flex-wrap gap-2">
+                    <button onclick="filterEmails('all')" class="filter-btn active">All</button>
+                    <button onclick="filterEmails('dot')" class="filter-btn">Dot Tricks</button>
+                    <button onclick="filterEmails('plus')" class="filter-btn">Plus Aliases</button>
+                    <button onclick="filterEmails('mixed')" class="filter-btn">Mixed</button>
+                    <button onclick="filterEmails('random')" class="filter-btn">Random</button>
+                </div>
+
+                <div id="emailList" class="space-y-3 max-h-96 overflow-y-auto pr-2">
+                    <!-- Email list will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Section -->
+        <div class="mt-8 space-y-6">
+            <div class="card">
+                <div class="flex items-start gap-4">
+                    <div class="text-2xl pt-1">💡</div>
                     <div>
-                        <label for="email" class="block text-sm font-medium text-blue-200 mb-3 tracking-wide">
-                            🛸 ENTER YOUR GMAIL COORDINATES
-                        </label>
-                        <div class="relative">
-                            <input type="email" id="email" placeholder="spacetraveler@gmail.com" class="cosmic-input w-full px-6 py-4 rounded-xl text-lg tracking-wide">
-                            <div class="absolute inset-y-0 right-0 flex items-center pr-4">
-                                <div class="text-blue-400 text-2xl">📧</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Advanced Options Toggle -->
-                    <div class="text-center">
-                        <button onclick="toggleOptions()" id="optionsToggle" class="glow-warning text-white font-bold py-2 px-6 rounded-lg text-sm tracking-wide hover:scale-105 transition-all duration-300">
-                            ⚙️ ADVANCED OPTIONS
-                        </button>
-                    </div>
-
-                    <!-- Advanced Options Panel -->
-                    <div id="optionsPanel" class="options-panel">
-                        <div class="glow-border rounded-xl p-4 bg-black/20">
-                            <h3 class="text-white font-bold mb-4 text-center">🎛️ GENERATION SETTINGS</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm text-blue-200 mb-2">Max Variations per Category</label>
-                                    <input type="number" id="maxVariations" value="10" min="5" max="50" class="cosmic-input w-full px-3 py-2 rounded-lg text-sm">
-                                </div>
-                                <div>
-                                    <label class="block text-sm text-blue-200 mb-2">Plus Alias Keywords</label>
-                                    <input type="text" id="customKeywords" placeholder="work,business,shopping" class="cosmic-input w-full px-3 py-2 rounded-lg text-sm">
-                                </div>
-                                <div class="md:col-span-2">
-                                    <label class="block text-sm text-blue-200 mb-2">Generation Types</label>
-                                    <div class="flex flex-wrap gap-2">
-                                        <label class="flex items-center gap-2 text-sm text-white">
-                                            <input type="checkbox" id="enableDots" checked class="rounded"> Dot Variations
-                                        </label>
-                                        <label class="flex items-center gap-2 text-sm text-white">
-                                            <input type="checkbox" id="enablePlus" checked class="rounded"> Plus Aliases
-                                        </label>
-                                        <label class="flex items-center gap-2 text-sm text-white">
-                                            <input type="checkbox" id="enableMixed" checked class="rounded"> Mixed Combinations
-                                        </label>
-                                        <label class="flex items-center gap-2 text-sm text-white">
-                                            <input type="checkbox" id="enableRandom" checked class="rounded"> Random Patterns
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <button onclick="generateEmails()" id="generateBtn" class="glow-button flex-1 text-white font-bold py-4 px-8 rounded-xl text-lg tracking-wide flex items-center justify-center gap-3 hover:scale-105 transition-all duration-300">
-                            ⚡ LAUNCH GENERATOR
-                        </button>
-                        <button onclick="clearResults()" class="glow-danger text-white font-bold py-4 px-8 rounded-xl text-lg tracking-wide flex items-center justify-center gap-3 hover:scale-105 transition-all duration-300">
-                            🗑️ CLEAR SPACE
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Results Section -->
-            <div id="results" class="hidden">
-                <div class="glow-border rounded-2xl p-6">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-                        <h2 class="text-2xl font-bold text-white tracking-wide">
-                            🌟 EMAIL CONSTELLATION
-                        </h2>
-                        <div class="flex gap-3">
-                            <button onclick="copyAllEmails()" class="glow-success text-white font-medium py-3 px-6 rounded-lg text-sm tracking-wide flex items-center gap-2 hover:scale-105 transition-all duration-300">
-                                📋 COPY ALL
-                            </button>
-                            <span id="emailCount" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm font-bold px-4 py-3 rounded-lg tracking-wide"></span>
-                        </div>
-                    </div>
-                    
-                    <!-- Category Filter -->
-                    <div class="mb-4 flex flex-wrap gap-2">
-                        <button onclick="filterEmails('all')" class="filter-btn text-white px-4 py-2 rounded-lg text-sm font-medium transition-all active" style="background: linear-gradient(45deg, #74b9ff, #0984e3);">
-                            🌟 ALL
-                        </button>
-                        <button onclick="filterEmails('dot')" class="filter-btn text-white px-4 py-2 rounded-lg text-sm font-medium transition-all" style="background: linear-gradient(45deg, #a29bfe, #6c5ce7);">
-                            • DOT TRICKS
-                        </button>
-                        <button onclick="filterEmails('plus')" class="filter-btn text-white px-4 py-2 rounded-lg text-sm font-medium transition-all" style="background: linear-gradient(45deg, #fd79a8, #e84393);">
-                            + PLUS ALIASES
-                        </button>
-                        <button onclick="filterEmails('mixed')" class="filter-btn text-white px-4 py-2 rounded-lg text-sm font-medium transition-all" style="background: linear-gradient(45deg, #fdcb6e, #f39c12);">
-                            🔀 MIXED
-                        </button>
-                        <button onclick="filterEmails('random')" class="filter-btn text-white px-4 py-2 rounded-lg text-sm font-medium transition-all" style="background: linear-gradient(45deg, #00b894, #00a085);">
-                            🎲 RANDOM
-                        </button>
-                    </div>
-                    
-                    <div id="emailList" class="space-y-3 max-h-96 overflow-y-auto pr-2">
-                        <!-- Email list will be populated here -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Enhanced Info Section -->
-            <div class="mt-8 space-y-6">
-                <!-- Main Info -->
-                <div class="glow-border rounded-2xl p-6">
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl">🛰️</div>
-                        <div>
-                            <h3 class="text-yellow-300 font-bold text-lg mb-2 tracking-wide">COSMIC KNOWLEDGE</h3>
-                            <p class="text-blue-200 leading-relaxed">
-                                Gmail's quantum mechanics ignore dots (.) in usernames and treat plus (+) aliases as the same inbox. 
-                                Every variation in this constellation delivers to the same cosmic destination! 🌌
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tricks Explanation -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="glow-border rounded-xl p-4">
-                        <h4 class="text-pink-300 font-bold mb-2 flex items-center gap-2">
-                            <span style="background: linear-gradient(45deg, #a29bfe, #6c5ce7); font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em;">•</span> DOT TRICKS
-                        </h4>
-                        <p class="text-blue-200 text-sm">
-                            Add dots anywhere in your username. Gmail ignores them completely!
-                        </p>
-                    </div>
-
-                    <div class="glow-border rounded-xl p-4">
-                        <h4 class="text-pink-300 font-bold mb-2 flex items-center gap-2">
-                            <span style="background: linear-gradient(45deg, #fd79a8, #e84393); font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em;">+</span> PLUS ALIASES
-                        </h4>
-                        <p class="text-blue-200 text-sm">
-                            Add +anything after your username for easy filtering and organization.
-                        </p>
-                    </div>
-
-                    <div class="glow-border rounded-xl p-4">
-                        <h4 class="text-pink-300 font-bold mb-2 flex items-center gap-2">
-                            <span style="background: linear-gradient(45deg, #fdcb6e, #f39c12); font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em;">🔀</span> MIXED COMBOS
-                        </h4>
-                        <p class="text-blue-200 text-sm">
-                            Combine dots and plus aliases for maximum variation possibilities.
-                        </p>
-                    </div>
-
-                    <div class="glow-border rounded-xl p-4">
-                        <h4 class="text-pink-300 font-bold mb-2 flex items-center gap-2">
-                            <span style="background: linear-gradient(45deg, #00b894, #00a085); font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em;">🎲</span> RANDOM PATTERNS
-                        </h4>
-                        <p class="text-blue-200 text-sm">
-                            Unique combinations using numbers, words, and creative patterns.
+                        <h3 class="font-bold text-lg mb-2">How it Works</h3>
+                        <p class="text-gray-600 dark:text-gray-400">
+                            Gmail ignores dots (.) in usernames and anything after a plus sign (+). This means `user.name@gmail.com` and `username+work@gmail.com` all go to the same inbox as `username@gmail.com`.
                         </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-        let allEmails = [];
-        let currentFilter = 'all';
-
-        function createStarfield() {
-            const starsContainer = document.getElementById('stars');
-            const numberOfStars = 150;
-            
-            for (let i = 0; i < numberOfStars; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.width = Math.random() * 3 + 1 + 'px';
-                star.style.height = star.style.width;
-                star.style.animationDelay = Math.random() * 2 + 's';
-                starsContainer.appendChild(star);
-            }
-        }
-
-        function toggleOptions() {
-            const panel = document.getElementById('optionsPanel');
-            const toggle = document.getElementById('optionsToggle');
-            
-            panel.classList.toggle('expanded');
-            
-            if (panel.classList.contains('expanded')) {
-                toggle.innerHTML = '⚙️ HIDE OPTIONS';
-            } else {
-                toggle.innerHTML = '⚙️ ADVANCED OPTIONS';
-            }
-        }
-
-        function generateEmails() {
-            const emailInput = document.getElementById('email');
-            const generateBtn = document.getElementById('generateBtn');
-            const email = emailInput.value.trim();
-            
-            if (!email) {
-                showCosmicAlert('🚨 COORDINATES REQUIRED! Enter your Gmail address to begin the journey!');
-                return;
-            }
-            
-            if (!email.toLowerCase().includes('@gmail.com')) {
-                showCosmicAlert('🛸 INVALID COORDINATES! Please enter a valid Gmail address!');
-                return;
-            }
-
-            const originalText = generateBtn.innerHTML;
-            generateBtn.innerHTML = '<div class="loading"></div> GENERATING...';
-            generateBtn.disabled = true;
-
-            setTimeout(() => {
-                try {
-                    const variations = generateAdvancedVariations(email);
-                    allEmails = variations;
-                    displayResults(variations);
-                    updateButtonStates('all');
-                    showCosmicAlert('🚀 MISSION SUCCESSFUL! ' + variations.length + ' email variants generated!', 'success');
-                } catch (error) {
-                    showCosmicAlert('🛸 GENERATION ERROR! Please try again!');
-                } finally {
-                    generateBtn.innerHTML = originalText;
-                    generateBtn.disabled = false;
-                }
-            }, 1500);
-        }
-
-        function generateAdvancedVariations(email) {
-            const [username, domain] = email.split('@');
-            const maxVar = parseInt(document.getElementById('maxVariations').value) || 10;
-            const customKeywords = document.getElementById('customKeywords').value.split(',').map(k => k.trim()).filter(k => k);
-            
-            const enableDots = document.getElementById('enableDots').checked;
-            const enablePlus = document.getElementById('enablePlus').checked;
-            const enableMixed = document.getElementById('enableMixed').checked;
-            const enableRandom = document.getElementById('enableRandom').checked;
-            
-            let variations = [];
-
-            if (enableDots && username.length > 1) {
-                variations.push(...generateDotVariations(username, domain, maxVar));
-            }
-            if (enablePlus) {
-                variations.push(...generatePlusAliases(username, domain, maxVar, customKeywords));
-            }
-            if (enableMixed && username.length > 3) {
-                variations.push(...generateMixedCombinations(username, domain, maxVar));
-            }
-            if (enableRandom) {
-                variations.push(...generateRandomPatterns(username, domain, maxVar));
-            }
-
-            return [...new Set(variations.map(v => JSON.stringify(v)))].map(v => JSON.parse(v))
-                .filter(v => v.email !== email);
-        }
-
-        function generateDotVariations(username, domain, maxVar) {
-            const variations = [];
-            const length = username.length;
-            
-            for (let i = 0; i < (1 << (length - 1)); i++) {
-                let variation = username[0];
-                for (let j = 1; j < length; j++) {
-                    if (i & (1 << (j - 1))) {
-                        variation += '.';
-                    }
-                    variation += username[j];
-                }
-                variations.push({ 
-                    email: variation + '@' + domain, 
-                    category: 'dot', 
-                    type: i === 0 ? 'No Dots' : (variation.split('.').length - 1 === 1 ? 'Single Dot' : 'Multiple Dots') 
-                });
-                if (variations.length >= maxVar) break;
-            }
-            
-            return variations;
-        }
-
-        function generatePlusAliases(username, domain, maxVar, customKeywords) {
-            const variations = [];
-            const defaultKeywords = [
-                "splake", "restituees", "nationaloekonom", "superobedient", "ongekreukte", "tarperete", "unroosti", "eenlettergrepig",
-                "eegs", "fokkerust", "doubtfulnesses", "einsamerer", "mewuk", "caballed", "lacero", "propanols", "safflower",
-                "overlegden", "spleetbreuken", "baciasse", "arches", "unacquir", "futsuria", "mjukne", "gillnetting", "kostvrou",
-                "schooltjes", "kampheng", "kilet", "invariantive", "obesit", "immobilieneigen", "coloriee", "sackett", "fixait",
-                "vingepro", "secretag", "geprovoceerden", "editorialiser", "kulturelleres", "voltooiingen", "senng", "mohezi",
-                "resistais", "guillotineerden", "scivolavo", "drahtbue", "bogala", "spendthr", "pluggen", "suppenkraeutern",
-                "deglutinating", "phuket", "bemuht", "fummeln", "belachelijker", "buikvlie", "scuppernongs", "appointed", "pijota",
-                "beckonings", "hepatoum", "gallistica", "gegaertes", "proefvaar", "werktisch", "bancaire", "cartoonishly", "franus",
-                "housewiv", "vliegtoe", "alchymies", "autoflare", "durchschnittes", "baudette", "detachments", "klingers", "brygge",
-                "emaciation", "beatisimo", "salvages", "drumore", "disinvolte", "deleitosamente", "desiliter", "bedillerige",
-                "reflexflache", "protobasidium", "desinfecte", "verdapperd", "plouter", "hotelvollpensio", "roduco", "ampelidea",
-                "hydrides", "telegrafdirektr", "lycopersicon", "amattaru", "cadwal", "nagwares", "sbagliate", "allatives", "cradlebo",
-                "schuldbewijzen", "zaramo", "sucramine", "generationer", "biocoenoses", "titelblad", "pepesa", "meditasj",
-                "architettura", "bhawnagari", "shishiru", "pastichais", "metatita", "onvoorbedachtst", "doedeltj", "denkansatzes",
-                "eglomises", "reinstit", "biseksue", "konkelden", "hygienischem", "scwabischeignet", "ettml", "keisanti", "pademelons",
-                "laminariaceous", "unbeautify", "censureerden", "gestaroo", "parentelic", "binnenhaalt", "verschobt", "noguchim",
-                "antimacassar", "bemadden", "bushcraft", "schoten", "importavi", "misphrased", "swazzles", "flakines", "reprocessings",
-                "terebinic", "kantschool", "gallhojt", "eiligstem", "luxais", "beleaguerments", "aktualisieren", "phillumenists",
-                "ereganto", "pointais", "terror", "hantaigo", "organisering", "engocetar", "shaitans", "consist", "ilan", "sackte",
-                "sipo", "abdin", "excluent", "missishness", "halbinse", "beschimpte", "stoelgel", "abusivi", "contradicho",
-                "meewarige", "generalintendan", "dispread", "werpsper", "roadwarr", "eingenommenen", "evenworthy", "postelni",
-                "ansatzpu", "tischlerleim", "subinteg", "herzzerreissend", "raccompagnes", "apsara", "untackled", "pastrana", "sm1",
-                "pajadinka", "ruthlessnesses", "comporteraient", "cholericly", "igenkann", "commentant", "pitapats", "herniate",
-                "insilamm", "steeneiken", "quittiertest", "potchara", "sousokuf", "teucrium", "slawa", "lagkapte", "terunori",
-                "publikes", "balenasse", "outclasses", "pietetsfull", "duplizieren", "funambule", "winterhi", "opraktis",
-                "maedchenjahre", "beengewr", "soshouni", "overborn", "assunto", "strohwitwers", "douyaku", "schizophrenie",
-                "steemed", "erosely", "alienassi", "scrimpness", "grondtaa", "inspelden", "afgrnsningen", "bourgeonneraien",
-                "immunore", "geschiente", "ebriated", "reprogramming", "hypermetron", "arborais", "aerobicizes", "coleriques",
-                "arginase", "tamaha", "kanjyou", "gistzwam", "schanddaad", "biosocial", "ceneremm", "subordino", "shinseid",
-                "plzen", "foreshape", "decreti", "vermessenheit", "exekutivbefugni", "fervenci", "slatiness", "svarer", "zeitlebe"
-            ];
-            
-            const keywords = customKeywords.length > 0 ? customKeywords : defaultKeywords;
-            
-            keywords.forEach(keyword => {
-                if (variations.length >= maxVar) return;
-                variations.push({ 
-                    email: `${username}+${keyword}@${domain}`, 
-                    category: 'plus', 
-                    type: 'Keyword Alias' 
-                });
-            });
-            
-            return variations;
-        }
-
-        function generateMixedCombinations(username, domain, maxVar) {
-            const variations = [];
-            const keywords = ['work', 'temp', 'test', 'new', 'alt'];
-            
-            const dotVariations = generateDotVariations(username, domain, maxVar);
-            for (const dotVar of dotVariations) {
-                if (variations.length >= maxVar) break;
-                for (const keyword of keywords) {
-                    if (variations.length >= maxVar) break;
-                    variations.push({ 
-                        email: `${dotVar.email.split('@')[0]}+${keyword}@${domain}`, 
-                        category: 'mixed', 
-                        type: 'Dot + Plus' 
-                    });
-                }
-            }
-            
-            return variations;
-        }
-
-        function generateRandomPatterns(username, domain, maxVar) {
-            const variations = [];
-            const patterns = ['x', 'alt', 'new', 'v2', 'pro', 'main', 'dev', 'app'];
-            
-            patterns.forEach((pattern, index) => {
-                if (variations.length >= maxVar) return;
-                variations.push({
-                    email: `${username}+${pattern}${index + 1}@${domain}`,
-                    category: 'random',
-                    type: 'Random Pattern'
-                });
-            });
-            
-            return variations;
-        }
-
-        function displayResults(emails) {
-            const emailList = document.getElementById('emailList');
-            const emailCount = document.getElementById('emailCount');
-            const results = document.getElementById('results');
-            
-            results.classList.remove('hidden');
-            emailList.innerHTML = '';
-            emailCount.textContent = `${emails.length} VARIANTS`;
-            
-            emails.forEach((emailObj, index) => {
-                const li = document.createElement('div');
-                li.className = `email-item flex justify-between items-center p-3 rounded-lg bg-black/20 glow-border email-${emailObj.category}`;
-                li.style.animationDelay = `${index * 0.1}s`;
-                
-                li.innerHTML = `
-                    <div class="flex items-center gap-3">
-                        <span class="text-blue-100 font-bold text-sm w-8 flex-shrink-0 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                            ${index + 1}.
-                        </span>
-                        <span class="text-blue-100">${emailObj.email}</span>
-                    </div>
-                    <button onclick="copyEmail('${emailObj.email}', this)" class="glow-success text-white px-3 py-2 rounded-lg text-sm font-medium transition-all hover:scale-105">
-                        📋 COPY
-                    </button>
-                `;
-                emailList.appendChild(li);
-            });
-        }
-
-        function filterEmails(filter) {
-            currentFilter = filter;
-            updateButtonStates(filter);
-            
-            const filteredEmails = filter === 'all' 
-                ? allEmails 
-                : allEmails.filter(email => email.category === filter);
-            
-            displayResults(filteredEmails);
-        }
-
-        function updateButtonStates(activeFilter) {
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(button => {
-                const filterType = button.getAttribute('onclick').match(/'([^']+)'/)[1];
-                button.classList.toggle('active', filterType === activeFilter);
-                
-                const badgeStyles = {
-                    all: 'background: linear-gradient(45deg, #74b9ff, #0984e3);',
-                    dot: 'background: linear-gradient(45deg, #a29bfe, #6c5ce7);',
-                    plus: 'background: linear-gradient(45deg, #fd79a8, #e84393);',
-                    mixed: 'background: linear-gradient(45deg, #fdcb6e, #f39c12);',
-                    random: 'background: linear-gradient(45deg, #00b894, #00a085);'
-                };
-                
-                if (filterType === activeFilter) {
-                    button.style.background = 'linear-gradient(45deg, #74b9ff, #0984e3)';
-                    button.style.boxShadow = '0 0 20px rgba(116, 185, 255, 0.5)';
-                } else {
-                    button.style.background = badgeStyles[filterType];
-                    button.style.boxShadow = 'none';
-                }
-            });
-        }
-
-        function copyEmail(email, button) {
-            navigator.clipboard.writeText(email).then(() => {
-                const originalText = button.innerHTML;
-                button.innerHTML = '✅ COPIED!';
-                button.classList.add('copy-success');
-                setTimeout(() => {
-                    button.innerHTML = originalText;
-                    button.classList.remove('copy-success');
-                }, 1000);
-            }).catch(() => {
-                showCosmicAlert('🛸 COPY FAILED! Please try again!');
-            });
-        }
-
-        function copyAllEmails() {
-            const button = document.querySelector('button[onclick="copyAllEmails()"]');
-            const emailsToCopy = allEmails
-                .filter(email => currentFilter === 'all' || email.category === currentFilter)
-                .map(email => email.email)
-                .join('\n');
-            
-            navigator.clipboard.writeText(emailsToCopy).then(() => {
-                const originalText = button.innerHTML;
-                button.innerHTML = '✅ ALL COPIED!';
-                button.classList.add('copy-success');
-                setTimeout(() => {
-                    button.innerHTML = originalText;
-                    button.classList.remove('copy-success');
-                }, 1000);
-                showCosmicAlert('🌟 ALL EMAILS COPIED!', 'success');
-            }).catch(() => {
-                showCosmicAlert('🛸 COPY FAILED! Please try again!');
-            });
-        }
-
-        function clearResults() {
-            allEmails = [];
-            document.getElementById('results').classList.add('hidden');
-            document.getElementById('email').value = '';
-            updateButtonStates('all');
-        }
-
-        function showCosmicAlert(message, type = 'error') {
-            const alert = document.createElement('div');
-            alert.className = `fixed top-4 left-1/2 transform -translate-x-1/2 p-4 rounded-lg text-white text-sm font-medium tracking-wide animate-pulse ${
-                type === 'success' ? 'glow-success' : 'glow-danger'
-            }`;
-            alert.textContent = message;
-            document.body.appendChild(alert);
-            
-            setTimeout(() => {
-                alert.style.opacity = '0';
-                setTimeout(() => alert.remove(), 300);
-            }, 2000);
-        }
-
-        // Initialize starfield
-        createStarfield();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
